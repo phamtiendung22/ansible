@@ -1,0 +1,10 @@
+[web_servers]
+10.10.10.102 ansible_user=miichi ansible_password="123" 
+10.10.10.103
+[db_servers]
+10.10.10.102
+10.10.10.103
+
+[base]
+10.10.10.102
+10.10.10.103

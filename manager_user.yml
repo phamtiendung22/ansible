@@ -1,0 +1,26 @@
+---
+- hosts: all
+  become: true
+  tasks:
+
+# create user
+  - name: create simone user
+    tags: always
+    user:
+      name: simone
+      groups: root
+
+  - name: add ssh for simone
+    tags: always
+    authorized_key:
+      user: simone
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDjhHIIgWS1Unysm509PQ21BwuIsMoJANRqasV4Ia5xV4M9eW9Y3spaGDTHlGkUpJCkvTbJEjJOy/xcHV/fkHG9QScWqagTe9hUs6ARy4buPXzCf2JLfn5awhXtRCs41W+w5Y1Z9BoRZpgfF7Z5vgpw6V5NT+CdRoDlxcpWvMWK7wGL6eax5ZPpPyCEp/+VJf7oAP/pNqUE4y+3prxVy8NTReRLRVLK1aONbt+sEQYwhh5cPqWOgT193LyD+7mGuJMKVws0+65HBGX48RWJXpeGqLmzExFNXYqRUg/C+0SyGDlbMrnqFPEna+qhSDAZwEQRFkC8/Iv7K7LtSzjvt+2WGOW/PrjHRN68ek9CzGvTnxPSRfEu15XlmnzIMSlldu2TSXDmPfRufjF8jlh8WBH0gjnBE8aB8MnwhzLEijuhUtOHC640WuLrIqJO6nwcDzBqwsO9/aoOzb4hN6ujZ6P6V6+7Pgf6U9y5JDvzhsolY1W7mowAccyROdCIHrWgtzl1GB6I3/pdQHXSoLKlKL1AKnSXjAZK4DEs1Cd8W4vGygWLc9hNTyRguG84WutvVfpk/ZIaGneLK1/502QWyeUjjf+fCFQYHHkpQKxkPU7loznf5xpMe21aM2D0LhQZCORbP2p462aaum3OEuzlghWbw2QmQOOp7zNLcCzu60SaMQ== dungp0792@gmail.com"
+
+  - name: add sudoers file for simone
+    tags: always
+    copy:
+      src: sudoer_simone
+      dest: /etc/sudoers.d/simone
+      owner: root
+      group: root
+      mode: 0440

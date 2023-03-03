@@ -1,0 +1,26 @@
+---
+- hosts: all
+  become: true
+  tasks:
+
+  - name: install apache2 ubuntu
+    tags: apache, apache2,httpd
+    apt:
+      name:
+        - apache2
+        - libapache2-mod-php  
+      state: latest
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+
+
+
+#centos
+  - name: install apache2 cestos
+    dnf:
+      name:
+        - httpd
+        - php
+      state: latest
+      update_cache: yes
+    when: ansible_distribution == "CentOS"
